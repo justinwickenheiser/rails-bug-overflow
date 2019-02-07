@@ -1,5 +1,5 @@
 class BugsController < ApplicationController
-  before_action :set_bug, only: [:show, :edit, :update, :destroy]
+  before_action :set_bug, :set_issue_types, :set_priorities, :set_statuses, only: [:show, :edit, :update, :destroy]
 
   # GET /bugs
   # GET /bugs.json
@@ -19,7 +19,6 @@ class BugsController < ApplicationController
 
   # GET /bugs/1/edit
   def edit
-    @bug = Bug.find(params[:id])
   end
 
   # POST /bugs
@@ -66,6 +65,18 @@ class BugsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bug
       @bug = Bug.find(params[:id])
+    end
+
+    def set_issue_types
+      @issue_types = Bug.issue_types
+    end
+
+    def set_priorities
+      @priorities = Bug.priorities
+    end
+
+    def set_statuses
+      @statuses = Bug.statuses
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
