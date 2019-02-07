@@ -30,3 +30,9 @@ values as enumerated types.)
 3. The default value of issue_type should be feature.  
 4. The default value of priority should be medium.  
 5. The default value of status should be open.  
+
+
+1. lname, fname, email cannot be blank whenever an author is created or edited.  
+2. email must be unique and be a valid format for an email address.  
+3. thumbnail must end with either .png, .jpg, or .gif. It is ok to leave the thumbnail
+field blank
