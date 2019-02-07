@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 2019_02_06_150729) do
   create_table "bugs", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "issue_type"
-    t.string "priority"
-    t.string "status"
+    t.string "issue_type", default: "Feature"
+    t.string "priority", default: "Medium"
+    t.string "status", default: "Open"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
