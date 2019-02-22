@@ -1,0 +1,39 @@
+<div class="jumbotron">
+	<div class="container">
+		<div class="content-underlay">
+			<h1>BugOverflow</h1>
+			<p>
+				A simple bug tracker for a simple life.
+			</p>
+			<p>
+				<a class="btn btn-primary btn-lg" href="#" role="button">
+					Learn more &raquo;
+				</a>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<h2>Recent Bugs</h2>
+	<!-- Example row of columns -->
+	<div class="row">
+		<% @bugs.each do |bug| %>
+			<div class="col-md-4">
+				<h3><%= bug.title%></h3>
+				<p>
+					<%= bug.description.truncate_words(30)%>
+				</p>
+				<p>
+					<%= link_to 'Read more >', bug, class: "btn btn-default"%>
+				</p>
+			</div>
+		<% end %>
+	</div>
+	<hr>
+	<footer>
+		<p>
+			&copy; 2018 Justin Wickenheiser
+		</p>
+	</footer>
+</div>

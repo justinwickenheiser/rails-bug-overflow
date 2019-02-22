@@ -1,39 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div id="main" class="container">
 
-<h1>Bugs</h1>
+  <% if !notice.blank? %>
+    <p id="notice" class="alert alert-success"><%= notice %></p>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Issue type</th>
-      <th>Priority</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Bugs</h1>
 
-  <tbody>
-    <% @bugs.each do |bug| %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td>
-          <%= (bug.user.try(:fname)) %> <%= (bug.user.try(:lname) || "N/A") %>
-        </td>
-        <td><%= bug.title %></td>
-        <td><%= bug.description %></td>
-        <td><%= bug.issue_type %></td>
-        <td><%= bug.priority %></td>
-        <td><%= bug.status %></td>
-        <td><%= link_to 'Show', bug %></td>
-        <td><%= link_to 'Edit', edit_bug_path(bug) %></td>
-        <td><%= link_to 'Destroy', bug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>User</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Issue type</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @bugs.each do |bug| %>
+        <tr>
+          <td>
+            <%= (bug.user.try(:fname)) %> <%= (bug.user.try(:lname) || "N/A") %>
+          </td>
+          <td><%= bug.title %></td>
+          <td><%= bug.description %></td>
+          <td><%= bug.issue_type %></td>
+          <td><%= bug.priority %></td>
+          <td><%= bug.status %></td>
+          <td>
+            <%= link_to bug, class: "btn btn-default btn-sm" do %>
+              Show
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_bug_path(bug), class: "btn btn-default btn-sm" do %>
+              Edit
+            <% end %>
+          </td>
+          <td>
+            <%= link_to bug, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" do %>
+              Delete
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Bug', new_bug_path %>
+  <br>
+
+  <%= link_to 'New Bug', new_bug_path, :class => "btn btn-primary" %>
+</div>

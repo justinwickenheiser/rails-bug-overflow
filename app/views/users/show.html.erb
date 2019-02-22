@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div id="main" class="container">
+	<% if !notice.blank? %>
+		<p id="notice" class="alert alert-success"><%= notice %></p>
+	<% end %>
 
-<p>
-  <strong>Lname:</strong>
-  <%= @user.lname %>
-</p>
+	<p>
+		<strong>Lname:</strong>
+		<%= @user.lname %>
+	</p>
 
-<p>
-  <strong>Fname:</strong>
-  <%= @user.fname %>
-</p>
+	<p>
+		<strong>Fname:</strong>
+		<%= @user.fname %>
+	</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+	<p>
+		<strong>Email:</strong>
+		<%= @user.email %>
+	</p>
 
-<p>
-  <strong>Thumbnail:</strong>
-  <%= @user.thumbnail %>
-</p>
+	<p>
+		<strong>Thumbnail:</strong>
+		<%= @user.thumbnail %>
+	</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+	<%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %>
+	<%= link_to 'Back', users_path, class: "btn btn-danger" %>
+</div>

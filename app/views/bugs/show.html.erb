@@ -1,34 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div id="main" class="container">
+  <% if !notice.blank? %>
+    <p id="notice" class="alert alert-success"><%= notice %></p>
+  <% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= (@bug.user.try(:fname)) %> <%= (@bug.user.try(:lname) || "N/A") %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= (@bug.user.try(:fname)) %> <%= (@bug.user.try(:lname) || "N/A") %>
+  </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @bug.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @bug.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @bug.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @bug.description %>
+  </p>
 
-<p>
-  <strong>Issue type:</strong>
-  <%= @bug.issue_type %>
-</p>
+  <p>
+    <strong>Issue type:</strong>
+    <%= @bug.issue_type %>
+  </p>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @bug.priority %>
-</p>
+  <p>
+    <strong>Priority:</strong>
+    <%= @bug.priority %>
+  </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @bug.status %>
-</p>
+  <p>
+    <strong>Status:</strong>
+    <%= @bug.status %>
+  </p>
 
-<%= link_to 'Edit', edit_bug_path(@bug) %> |
-<%= link_to 'Back', bugs_path %>
+  <%= link_to 'Edit', edit_bug_path(@bug), class: "btn btn-primary" %>
+  <%= link_to 'Back', bugs_path, class: "btn btn-danger" %>
+</div>
