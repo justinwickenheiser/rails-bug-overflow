@@ -1,0 +1,59 @@
+<script type="text/javascript">
+	// Set up a dummy function so we don't pollute the global namespace
+(function () {
+	"use strict";
+
+	var insertBugs = function(bugs) {
+		var list = document.getElementById("bugList");
+		bugs.forEach(function(bug){
+			var newLI = document.createElement("li");
+			var newText = document.createTextNode(bug.issue_type + ": " + bug.title + " (" + bug.description + ")");
+			newLI.appendChild(newText);
+			list.appendChild(newLI);
+		});
+	};
+
+	var Ajax = {
+		request : function (url,method, data, success, failure) {
+			var xhr = window.ActiveX ? new ActiveXObject("Microsoft.XMLHTTP"): new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 4 && xhr.status === 200){
+					// the request is complete, parse data and call callback
+					success(xhr.responseText);
+				} else if (xhr.readyState === 4) { // something went wrong but complete
+					failure();
+				}
+			};
+			xhr.onerror = function () {
+				console.log("there was an error!");
+			}
+			xhr.open(method,url,true);
+			xhr.send();
+		}
+	};
+
+	var loadBugs = function () {
+		Ajax.request("/bugs.json", "GET", null, function (data) {
+			// success
+			console.log("Success");
+			insertBugs(JSON.parse(data));
+		}, function() {
+			// failed
+			console.log("There was a problem. Status returned was " + ajax.status);
+		});
+	};
+
+	// Don't apply the event listeners until the document has loaded.
+	document.addEventListener("readystatechange", function () {
+		if (document.readyState === "interactive") {
+			var loadButton = document.getElementById("loadButton");
+			loadButton.addEventListener("click", loadBugs);
+		}
+	});
+})();
+</script>
+
+<h1>Ajax Test</h1>
+<ul id="bugList"></ul>
+
+<button id="loadButton">Load</button>
